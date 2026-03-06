@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>MiFlix</title>
+
+<style>
+
+body{
+margin:0;
+background:#141414;
+color:white;
+font-family:Arial;
+}
+
+/* LOGIN */
+
+#login{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+background:black;
+}
+
+input{
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:5px;
+margin:10px;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+background:#e50914;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+header{
+background:black;
+padding:20px;
+font-size:35px;
+font-weight:bold;
+color:#e50914;
+display:none;
+}
+
+/* BANNER */
+
+.banner{
+height:300px;
+background-image:url("https://i.etsystatic.com/40962208/r/il/54e3ce/6643140884/il_fullxfull.6643140884_dgne.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:flex-end;
+padding:30px;
+font-size:40px;
+font-weight:bold;
+}
+
+/* NETFLIX GRID */
+
+#inicio{
+display:none;
+}
+
+.subtitulo{
+padding-left:20px;
+font-size:22px;
+margin-top:10px;
+}
+
+.fila{
+display:flex;
+gap:20px;
+padding:20px;
+overflow-x:auto;
+}
+
+.peli{
+min-width:200px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.peli:hover{
+transform:scale(1.15);
+}
+
+.peli img{
+width:200px;
+border-radius:6px;
+}
+
+.titulo{
+text-align:center;
+margin-top:5px;
+font-size:14px;
+}
+
+/* VIDEO */
+
+.video{
+display:none;
+text-align:center;
+padding:20px;
+}
+
+iframe{
+width:95%;
+height:420px;
+border:none;
+border-radius:10px;
+}
+
+.boton{
+background:#e50914;
+border:none;
+color:white;
+padding:12px 25px;
+font-size:16px;
+cursor:pointer;
+margin-bottom:20px;
+border-radius:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="login">
+
+<h1 style="color:#e50914;font-size:50px;">MI-FLIX</h1>
+
+<input id="codigo" placeholder="Ingrese código">
+
+<button onclick="entrar()">Entrar</button>
+
+<p id="error" style="color:red;"></p>
+
+</div>
+
+<header id="logo">MI-FLIX</header>
+
+<!-- INICIO -->
+
+<div id="inicio">
+
+<div class="banner">
+Bienvenido a MiFlix
+</div>
+
+<div class="subtitulo">Películas</div>
+
+<div class="fila">
+
+<div class="peli" onclick="verPeli('p1')">
+<img src="https://upload.wikimedia.org/wikipedia/en/4/46/Jujutsu_kaisen.jpg">
+<div class="titulo">La Agencia Anti-Poderes</div>
+</div>
+
+<div class="peli" onclick="verPeli('p2')">
+<img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg">
+<div class="titulo">GRABANDO</div>
+</div>
+
+<div class="peli" onclick="verPeli('p3')">
+<img src="https://upload.wikimedia.org/wikipedia/en/7/72/Bleachanime.png">
+<div class="titulo">Las 2 Bandas</div>
+</div>
+
+<div class="peli" onclick="verPeli('p4')">
+<img src="https://upload.wikimedia.org/wikipedia/en/d/d1/Kimetsu_no_Yaiba_Volume_1.png">
+<div class="titulo">El Amo De Los Cuchillos</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- VIDEOS -->
+
+<div id="p1" class="video">
+<button class="boton" onclick="volver()">⬅ Volver</button><br>
+<iframe src="https://www.youtube.com/embed/zpFEMZWjc5U"></iframe>
+</div>
+
+<div id="p2" class="video">
+<button class="boton" onclick="volver()">⬅ Volver</button><br>
+<iframe src="https://www.youtube.com/embed/DlTifwfKfJE"></iframe>
+</div>
+
+<div id="p3" class="video">
+<button class="boton" onclick="volver()">⬅ Volver</button><br>
+<iframe src="https://www.youtube.com/embed/JIExDyVHNc4"></iframe>
+</div>
+
+<div id="p4" class="video">
+<button class="boton" onclick="volver()">⬅ Volver</button><br>
+<iframe src="https://www.youtube.com/embed/ALkjOGvy_p8"></iframe>
+</div>
+
+<script>
+
+function entrar(){
+
+let codigo=document.getElementById("codigo").value;
+
+if(codigo=="36924"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("inicio").style.display="block";
+document.getElementById("logo").style.display="block";
+
+}else{
+
+document.getElementById("error").innerText="Código incorrecto";
+
+}
+
+}
+
+function verPeli(id){
+
+document.getElementById("inicio").style.display="none";
+
+let videos=document.querySelectorAll(".video");
+
+videos.forEach(v => v.style.display="none");
+
+document.getElementById(id).style.display="block";
+
+}
+
+function volver(){
+
+let videos=document.querySelectorAll(".video");
+
+videos.forEach(v => v.style.display="none");
+
+document.getElementById("inicio").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
